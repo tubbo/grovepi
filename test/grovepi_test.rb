@@ -1,11 +1,7 @@
 require "test_helper"
 
-class GrovepiTest < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::Grovepi::VERSION
-  end
-
-  def test_it_does_something_useful
-    assert false
+class GrovepiTest < Grovepi::Test
+  def test_temp
+    assert_equal 60, Grovepi.temperature
   end
 end

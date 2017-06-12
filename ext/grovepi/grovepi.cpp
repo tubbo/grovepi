@@ -424,4 +424,5 @@ void
 Init_grovepi(void)
 {
   rb_mGrovepi = rb_define_module("Grovepi");
+  rb_define_singleton_method(rb_mGrovepi, "temperature", grovepi.temp);
 }
