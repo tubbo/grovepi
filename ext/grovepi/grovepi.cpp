@@ -420,23 +420,23 @@ const char* GrovePi::I2CError::detail()
 // TODO: how to convert VALUE -> uint8_t || VALUE -> bool?
 namespace GrovePiRuby {
   static void digitalWrite(VALUE pin, VALUE data) {
-    GrovePi::digitalWrite(pin, data);
+    GrovePi::digitalWrite(FIX2INT(pin), data);
   }
 
   static VALUE digitalRead(VALUE pin) {
-    return rb_str_new2(GrovePi::digitalRead(pin));
+    return rb_str_new2(GrovePi::digitalRead(FIX2INT(pin)));
   }
 
   static void analogWrite(VALUE pin, VALUE data) {
-    return GrovePi::analogWrite(pin, data);
+    return GrovePi::analogWrite(FIX2INT(pin), data);
   }
 
   static VALUE analogRead(VALUE pin) {
-    return rb_str_new2(GrovePi::analogRead(pin));
+    return rb_str_new2(GrovePi::analogRead(FIX2INT(pin)));
   }
 
   static VALUE ultrasonicRead(VALUE pin) {
-    return rb_str_new2(GrovePi::ultrasonicRead(pin));
+    return rb_str_new2(GrovePi::ultrasonicRead(FIX2INT(pin)));
   }
 }
 

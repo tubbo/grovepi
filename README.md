@@ -85,7 +85,9 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/tubbo/
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+This Ruby gem is available as open source under the terms of the [MIT
+License](http://opensource.org/licenses/MIT). The GrovePi C++ code is
+Copyright (C) 2017 Dexter Industries.
 
 ## Code of Conduct
 
