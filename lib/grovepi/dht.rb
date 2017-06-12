@@ -3,17 +3,27 @@
 module Grovepi
   # Temperature and humidity sensor.
   class DHT
-    attr_reader :temperature, :humidity
-
     def initialize
-      @temperature = 0
-      @humidity = 0
+      @temperature = 0.0
+      @humidity = 0.0
       reload!
     end
 
     # Retrieve information from the system.
     def reload!
-      get_unsafe_data @temperature, @humidity
+      get_safe_data @temperature, @humidity
+    end
+
+    # @return [Float] Current temperature in Fahrenheit.
+    def temperature
+      reload!
+      @temperature
+    end
+
+    # @return [Float] Current barometer reading.
+    def humidity
+      reload!
+      @humidity
     end
   end
 end
