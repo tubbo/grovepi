@@ -1,19 +1,19 @@
 module Grovepi
   class PH
-    SENSOR = 0
     ADC_REF = 5
 
-    def initialize
-      @data = nil
-      reload!
+    def initialize(sensor: 0)
+      @sensor = sensor
     end
 
-    def reload!
-      @data = Grovepi.analog_read(SENSOR)
+    # Raw pH electrode value
+    def read!
+      Grovepi.analog_read(@sensor)
     end
 
+    # @return [Float] Converted pH value to float.
     def to_f
-      (7 - 1000 * @data * ADC_REF / 59.16 / 1023).to_f
+      (7 - 1000 * data * ADC_REF / 59.16 / 1023).to_f
     end
   end
 end
