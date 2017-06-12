@@ -417,12 +417,39 @@ const char* GrovePi::I2CError::detail()
 	return this->what();
 }
 
-// Ruby stuff
+// TODO: how to convert VALUE -> uint8_t || VALUE -> bool?
+namespace GrovePiRuby {
+  static void digitalWrite(VALUE pin, VALUE data) {
+    GrovePi::digitalWrite(pin, data);
+  }
+
+  static VALUE digitalRead(VALUE pin) {
+    return rb_str_new2(GrovePi::digitalRead(pin));
+  }
+
+  static void analogWrite(VALUE pin, VALUE data) {
+    return GrovePi::analogWrite(pin, data);
+  }
+
+  static VALUE analogRead(VALUE pin) {
+    return rb_str_new2(GrovePi::analogRead(pin));
+  }
+
+  static VALUE ultrasonicRead(VALUE pin) {
+    return rb_str_new2(GrovePi::ultrasonicRead(pin));
+  }
+}
+
+// Define Ruby module for basic API functions
 VALUE rb_mGrovepi;
 
 void
 Init_grovepi(void)
 {
   rb_mGrovepi = rb_define_module("Grovepi");
-  rb_define_singleton_method(rb_mGrovepi, "temperature", grovepi.temp);
+  rb_define_singleton_method(rb_mGrovepi, "digital_write", GrovePiRuby::digitalWrite);
+  rb_define_singleton_method(rb_mGrovepi, "digital_read", GrovePiRuby::digitalRead);
+  rb_define_singleton_method(rb_mGrovepi, "analog_write", GrovePiRuby::analogWrite);
+  rb_define_singleton_method(rb_mGrovepi, "analog_read", GrovePiRuby::analogRead);
+  rb_define_singleton_method(rb_mGrovepi, "ultrasonic_read", GrovePiRuby::ultrasonicRead);
 }
