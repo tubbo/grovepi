@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Grovepi
+  # Temperature and humidity sensor.
   class DHT
     attr_reader :temperature, :humidity
 

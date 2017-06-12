@@ -1,3 +1,5 @@
-require "mkmf"
+# frozen_string_literal: true
 
-create_makefile("grovepi/grovepi")
+require 'mkmf'
+
+create_makefile('grovepi/grovepi')

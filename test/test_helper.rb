@@ -1,7 +1,9 @@
-$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+# frozen_string_literal: true
 
-require "grovepi"
-require "minitest/autorun"
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
+require 'grovepi'
+require 'minitest/autorun'
 
 module Grovepi
   class Test < Minitest::Test
