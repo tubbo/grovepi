@@ -1,8 +1,7 @@
-# Grovepi
+# GrovePi for Ruby
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/grovepi`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Unofficial bindings for the [GrovePi][] library, allowing you to write
+your Raspberry Pi software for GrovePi+ in Ruby!
 
 ## Installation
 
@@ -22,13 +21,63 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Read the current temperature:
+
+```ruby
+Grovepi.temperature # => 70
+```
+
+Read the current pH level:
+
+```ruby
+Grovepi.ph # => 6.83
+```
+
+Turn the LED on and off:
+
+```ruby
+Grovepi.led.active = true
+Grovepi.led.active? # => true
+Grovepi.led.active = false
+Grovepi.led.active? # => false
+```
+
+### Low-level API
+
+You can also use the "low-level" API to do raw digital and analog
+reads/writes on the device.
+
+For example, here is how to perform the above LED functions with the
+low-level `digitalWrite` and `digitalRead` calls:
+
+```ruby
+# the LED is off..
+Grovepi.digital_read(4)     # => 0
+# send data bit 1 to port D4 to turn on the LED
+Grovepi.digital_write(4,1)
+Grovepi.digital_read(4)     # => 1
+# the LED is now on. send data bit 0 to port D4 to turn off the LED
+Grovepi.digital_write(4,0)
+Grovepi.digital_read(4)     # => 0
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+This gem requires an installation of [Raspbian][], and therefore cannot
+be compiled on most machines. Provided in this repo is a `Dockerfile`
+which describes how to build a Docker container locally for gem testing.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To build the gem into a Docker container, run:
+
+    docker build .
+
+When that's done, you can now run tests in your container:
+
+    docker run 'bin/rake test'
+
+You can also get a console in your container:
+
+    docker run 'bin/console'
 
 ## Contributing
 

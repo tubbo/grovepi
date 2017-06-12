@@ -16,5 +16,4 @@ COPY . /tmp/piquarium
 
 # Install the gem from /tmp
 WORKDIR /tmp/piquarium
-RUN bundle install
-RUN bin/rake && bin/rake install
+RUN bin/setup && bin/rake && bin/rake install
