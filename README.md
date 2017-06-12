@@ -90,3 +90,6 @@ The gem is available as open source under the terms of the [MIT License](http://
 ## Code of Conduct
 
 Everyone interacting in the Grovepi project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/tubbo/grovepi/blob/master/CODE_OF_CONDUCT.md).
+
+[GrovePi]: http://wiki.seeed.cc/GrovePi_Plus/
+[Raspbian]: https://www.raspbian.org/
